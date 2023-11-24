@@ -2,6 +2,13 @@
 PVector spearPosition;
 Bubble[] bubbles = new Bubble [7];
 boolean gameover = false;
+boolean fishLeft;
+boolean fishRight;
+boolean fishUp;
+boolean fishDown;
+PVector fishPosition = new PVector();
+float fishSpeed = 5;
+
 Spear spear;
 //Fishy fish = new Fishy;
 
