@@ -14,7 +14,6 @@ Spear spear;
 
 void setup() {
   size(1200, 750);
-  //for (int i = 0; i ,
   noStroke();
   noCursor();
   for (int i = 0; i < bubbles.length; i++){
