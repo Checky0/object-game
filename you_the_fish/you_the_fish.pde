@@ -17,6 +17,7 @@ boolean fishUp;
 boolean fishDown;
 PVector fishPosition = new PVector();
 float fishSpeed = 6;
+PImage profish;
 
 Spear spear;
 //Fishy fish = new Fishy;
@@ -25,6 +26,7 @@ void setup() {
   size(1200, 750);
   noStroke();
   noCursor();
+  profish = loadImage("Sprite-0001.png.png");
   for (int i = 0; i < bubbles.length; i++){
  bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
  }
@@ -40,6 +42,7 @@ void draw() {
   bubbles[i].update();
   bubbles[i].edges();
   bubbles[i].show();  
+  image(profish, 20, 520+sin(frameCount*0.19));
   }
 }
 
