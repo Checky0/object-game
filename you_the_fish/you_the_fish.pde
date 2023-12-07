@@ -7,7 +7,7 @@ boolean fishRight;
 boolean fishUp;
 boolean fishDown;
 PVector fishPosition = new PVector();
-float fishSpeed = 5;
+float fishSpeed = 6;
 
 Spear spear;
 //Fishy fish = new Fishy;

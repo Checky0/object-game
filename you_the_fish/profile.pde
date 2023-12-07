@@ -2,7 +2,7 @@ class Profile{
 
   //image of fish 
 //switch statement text: 
-switch (phrase)
+//switch (phrase)
 
 
 }
