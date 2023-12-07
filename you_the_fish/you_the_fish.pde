@@ -1,4 +1,13 @@
+/**
+Charlize Collins
+991724329
 
+Refrences used for this project:
+For understanding game states: 
+[John McCaffrey]. (2016, September 28). Programming game states in processing [Video]. Youtube. https://youtu.be/q8rP6R0LCss?si=QPyeFDssXc-OJXdN
+Reviewing core programmng concepts: 
+[The Coding Train]. (2023, October 1). Creative Coding for Beginners - Full Course! [Video]. Youtube. https://youtu.be/4JzDttgdILQ?si=hFEwnRkZDzm-AppA
+**/
 PVector spearPosition;
 Bubble[] bubbles = new Bubble [7];
 boolean gameover = false;
