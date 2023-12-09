@@ -8,7 +8,6 @@ class Bubble {
   }
   void update() {
   y = y - random(2,10);
-
   }
   
   void show() {
