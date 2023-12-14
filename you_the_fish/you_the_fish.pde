@@ -25,9 +25,9 @@ PVector fishPosition = new PVector();
 float fishSpeed = 6;
 PImage profish;
 PImage speechB;
-PImage spearPic;
 
-Spear spear;
+
+//Spear spear;
 //Fishy fish = new Fishy;
 
 void setup() {
@@ -38,7 +38,6 @@ void setup() {
   //noCursor();
   profish = loadImage("Sprite-0001.png.png");
   speechB = loadImage("speech bobble game sprites.png");
-  spearPic = loadImage("spear sprite.png");
 
   for (int i = 0; i < bubbles.length; i++) {
     bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
@@ -64,7 +63,6 @@ void draw() {
     bubbles[i].show();
     image(profish, 20, 520+sin(frameCount*0.19));
     image(speechB, 230, 360+sin(frameCount*0.3));
-    image(spearPic, 540, -1810);
   }
   switch(menu) {
   case 0://main menu
