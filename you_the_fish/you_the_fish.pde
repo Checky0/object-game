@@ -47,8 +47,15 @@ void setup() {
 
 void draw() {
   background (53, 104, 189);
-  //spear.display();
-  //spear.move();
+  fill(#85B9B6, 90);
+  rect(0, 700, 1200, 50); 
+  fill(#85B9B6, 90);
+  rect(1000, 680, 200, 20); 
+  fill(#85B9B6, 90);
+  rect(1100, 660, 200, 20);
+  
+  
+ 
   //fish.showFishy();
   //fish.fishMove();
   for (int i = 0; i < bubbles.length; i++) {
@@ -65,9 +72,10 @@ void draw() {
      fill(250);
      textSize(30);
      textAlign(CENTER, CENTER);
-     text("Dodge the spear!", width/2, 100);
+     text("Dodge the spear!", width/2, 300);
      //StartButton.update();
      //STartButton.render();
+     //Fishy.showFishy();
     }
     break;
   case 1: // game play
