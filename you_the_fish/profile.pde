@@ -1,11 +1,11 @@
-class Profile {
+//class Profile {
 
-  //image of fish 
-//switch statement text: 
-//switch (phrase)
+//  //image of fish 
+////switch statement text: 
+////switch (phrase)
 
 
-}
+//}
 /**
 Random
 Switch statement

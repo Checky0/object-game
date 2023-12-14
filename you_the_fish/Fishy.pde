@@ -1,61 +1,61 @@
-class Fishy {
+//class Fishy {
 
-  Fishy() {
+//  Fishy() {
 
-    showFishy();
-    //fishMove();
+//    showFishy();
+//    //fishMove();
 
 
 
-    //PVector fishPosition = new PVector();
-  }
-  void showFishy() {
-    PVector fishPosition = new PVector();
-    fill(251, 218, 233);
-    rect(fishPosition.x+38, fishPosition.y+sin(frameCount*0.01), 107, 41);
-    fill(251, 218, 233);
-    rect(fishPosition.x+22, fishPosition.y, 15, 10);
-  }
+//    //PVector fishPosition = new PVector();
+//  }
+//  void showFishy() {
+//    PVector fishPosition = new PVector();
+//    fill(251, 218, 233);
+//    rect(fishPosition.x+38, fishPosition.y+sin(frameCount*0.01), 107, 41);
+//    fill(251, 218, 233);
+//    rect(fishPosition.x+22, fishPosition.y, 15, 10);
+//  }
 
-  void keyPressed() {
-    boolean fishLeft;
-    boolean fishRight;
-    boolean fishUp;
-    boolean fishDown;
+//  void keyPressed() {
+//    boolean fishLeft;
+//    boolean fishRight;
+//    boolean fishUp;
+//    boolean fishDown;
 
-    if (key == 'W' || key == 'w') {
-      fishUp = true;
-    }
-    if (key == 'S' || key == 's') {
-      fishDown = true;
-    }
-    if (key == 'A' || key == 'a') {
-      fishLeft = true;
-    }
-    if (key == 'D' || key == 'd') {
-      fishRight = true;
-    }
-  }
+//    if (key == 'W' || key == 'w') {
+//      fishUp = true;
+//    }
+//    if (key == 'S' || key == 's') {
+//      fishDown = true;
+//    }
+//    if (key == 'A' || key == 'a') {
+//      fishLeft = true;
+//    }
+//    if (key == 'D' || key == 'd') {
+//      fishRight = true;
+//    }
+//  }
 
-  void keyReleased() {
-    boolean fishLeft;
-    boolean fishRight;
-    boolean fishUp;
-    boolean fishDown;
+//  void keyReleased() {
+//    boolean fishLeft;
+//    boolean fishRight;
+//    boolean fishUp;
+//    boolean fishDown;
 
-    if (key == 'W' || key == 'w') {
-      fishUp = false;
-    }
-    if (key == 'S' || key == 's') {
-      fishDown = false;
-    }
-    if (key == 'A' || key == 'a') {
-      fishLeft = false;
-    }
-    if (key == 'D' || key == 'd') {
-      fishRight = false;
-    }
-  }
+//    if (key == 'W' || key == 'w') {
+//      fishUp = false;
+//    }
+//    if (key == 'S' || key == 's') {
+//      fishDown = false;
+//    }
+//    if (key == 'A' || key == 'a') {
+//      fishLeft = false;
+//    }
+//    if (key == 'D' || key == 'd') {
+//      fishRight = false;
+//    }
+//  }
 
 //  void fishMove() {
 //    boolean fishLeft;

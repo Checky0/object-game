@@ -25,13 +25,14 @@ PVector fishPosition = new PVector();
 float fishSpeed = 6;
 PImage profish;
 PImage speechB;
-
+Timer startTimer;
 
 //Spear spear;
 //Fishy fish = new Fishy;
 
 void setup() {
   size(1200, 750);
+  startTimer = new Timer(20);
   gameMode = "START";
   //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
   noStroke();
@@ -52,8 +53,9 @@ void draw() {
   rect(1000, 680, 200, 20); 
   fill(#85B9B6, 90);
   rect(1100, 660, 200, 20);
-  
-  
+  startTimer.countDown();
+  fill(0);
+  text(startTimer.getTime(), 20, 20);
  
   //fish.showFishy();
   //fish.fishMove();
