@@ -1,4 +1,4 @@
-/**
+ /**
  Charlize Collins
  991724329
  
@@ -25,6 +25,7 @@ PVector fishPosition = new PVector();
 float fishSpeed = 6;
 PImage profish;
 PImage speechB;
+PImage spearPic;
 
 Spear spear;
 //Fishy fish = new Fishy;
@@ -32,11 +33,12 @@ Spear spear;
 void setup() {
   size(1200, 750);
   gameMode = "START";
-  //StartButton = new Button(500, 100, 50 50);
+  //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
   noStroke();
-  noCursor();
+  //noCursor();
   profish = loadImage("Sprite-0001.png.png");
   speechB = loadImage("speech bobble game sprites.png");
+  spearPic = loadImage("spear sprite.png");
 
   for (int i = 0; i < bubbles.length; i++) {
     bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
@@ -55,6 +57,7 @@ void draw() {
     bubbles[i].show();
     image(profish, 20, 520+sin(frameCount*0.19));
     image(speechB, 230, 360+sin(frameCount*0.3));
+    image(spearPic, 540, -1810);
   }
   switch(menu) {
   case 0://main menu
@@ -63,6 +66,8 @@ void draw() {
      textSize(30);
      textAlign(CENTER, CENTER);
      text("Dodge the spear!", width/2, 100);
+     //StartButton.update();
+     //STartButton.render();
     }
     break;
   case 1: // game play
