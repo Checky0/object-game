@@ -1,4 +1,4 @@
-class Profile{
+class Profile {
 
   //image of fish 
 //switch statement text: 
