@@ -1,4 +1,4 @@
- /**
+/**
  Charlize Collins
  991724329
  
@@ -34,8 +34,8 @@ Button resetbutton;
 void setup() {
   size(1200, 750);
   startTimer = new Timer(20);
-  resetbutton = new Button(100, 100, 100, 50, "Reset", 0, 200, 200);
-  
+  resetbutton = new Button(1050, 100, 100, 50, "Reset", 20, 100, 255);
+
   gameMode = "START";
   //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
   noStroke();
@@ -51,25 +51,20 @@ void setup() {
 void draw() {
   background (53, 104, 189);
   fill(#85B9B6, 90);
-  rect(0, 700, 1200, 50); 
+  rect(0, 700, 1200, 50);
   fill(#85B9B6, 90);
-  rect(1000, 680, 200, 20); 
+  rect(1000, 680, 200, 20);
   fill(#85B9B6, 90);
   rect(1100, 660, 200, 20);
   startTimer.countDown();
-  fill(0);
-  text(startTimer.getTime(), 1100, 20);
-  
+  fill(30, 150, 0);
+  text(startTimer.getTime(), 1100, 60);
+
   //if(Time==0){
-  
+
   //}
-  if(resetbutton.isClicked()){
-  startTimer.setTime(100);
-  }
-  
-  resetbutton.update();
-  resetbutton.render();
- 
+
+
   //fish.showFishy();
   //fish.fishMove();
   for (int i = 0; i < bubbles.length; i++) {
@@ -82,13 +77,14 @@ void draw() {
   switch(menu) {
   case 0://main menu
     {
-     fill(250);
-     textSize(30);
-     textAlign(CENTER, CENTER);
-     text("Dodge the spear!", width/2, 300);
-     //StartButton.update();
-     //STartButton.render();
-     //Fishy.showFishy();
+      
+      fill(250);
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      text("Dodge the spear!", width/2, 300);
+      //StartButton.update();
+      //StartButton.render();
+      //Fishy.showFishy();
     }
     break;
   case 1: // game play
@@ -97,6 +93,13 @@ void draw() {
     break;
   case 2: // end game
     {
+      fill(100, 30, 200);
+      rect(0, 0, 1200, 700);
+      resetbutton.update();
+      resetbutton.render();
+      if (resetbutton.isClicked()) {
+      startTimer.setTime(100);
+  }
     }
     break;
   }
