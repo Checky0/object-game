@@ -27,15 +27,17 @@ PImage profish;
 PImage speechB;
 Timer startTimer;
 Button resetbutton;
+Spear bigSpear;
 
-//Spear spear;
+
 //Fishy fish = new Fishy;
 
 void setup() {
   size(1200, 750);
+  bigSpear = new Spear();
   startTimer = new Timer(20);
   resetbutton = new Button(1050, 100, 100, 50, "Reset", 20, 100, 255);
-
+  
   gameMode = "START";
   //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
   noStroke();
@@ -77,7 +79,7 @@ void draw() {
   switch(menu) {
   case 0://main menu
     {
-      
+      bigSpear.update();
       fill(250);
       textSize(30);
       textAlign(CENTER, CENTER);
