@@ -1,41 +1,149 @@
+/**
+ Charlize Collins
+ 991724329
+ 
+ Refrences used for this project:
+ For understanding game states:
+ [John McCaffrey]. (2016, September 28). Programming game states in processing [Video]. Youtube. https://youtu.be/q8rP6R0LCss?si=QPyeFDssXc-OJXdN
+ Reviewing core programmng concepts:
+ [The Coding Train]. (2023, October 1). Creative Coding for Beginners - Full Course! [Video]. Youtube. https://youtu.be/4JzDttgdILQ?si=hFEwnRkZDzm-AppA
+ **/
+
+String gameMode;
+int menu = 0; // 0 main menu, 1 game play, 2 end game
+String[] textPhrases = {"Hey!", "You, yeah you.", "Hello there!", "How's it going?", "Are you fr?"};
+int currentPhrase = 0;
+
+//Button StartButton;
 
 PVector spearPosition;
-Bubble[] bubbles = new Bubble [7];
+Bubble[] bubbles = new Bubble [21];
 boolean gameover = false;
 boolean fishLeft;
 boolean fishRight;
 boolean fishUp;
 boolean fishDown;
 PVector fishPosition = new PVector();
-float fishSpeed = 5;
+float fishSpeed = 6;
+PImage profish;
+PImage speechB;
+PImage jolly;
+PImage goodMood;
+PImage fishAte;
+Timer startTimer;
+Button resetbutton;
+Startbutton startb;
+int playerSize = 100;
+Spear bigSpear;
+Fishy yourFish;
 
-Spear spear;
+
 //Fishy fish = new Fishy;
 
 void setup() {
   size(1200, 750);
+  bigSpear = new Spear();
+  yourFish = new Fishy();
+  startTimer = new Timer(20);
+  resetbutton = new Button(1050, 100, 100, 50, "Reset", 20, 100, 255);
+  startb = new Startbutton(width/2-50, height/2-50, 100, 50, "Swim!", 90, 100, 255);
+  
+  gameMode = "START";
+  //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
   noStroke();
-  noCursor();
-  for (int i = 0; i < bubbles.length; i++){
- bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
- }
+  //noCursor();
+  profish = loadImage("Sprite-0001.png.png");
+  speechB = loadImage("speech bobble game sprites.png");
+  fishAte = loadImage("fish ate.png");
+  goodMood = loadImage("good mood fish.jpg");
+  jolly = loadImage("jolly fish.png");
+  for (int i = 0; i < bubbles.length; i++) {
+    bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
+  }
 }
 
 void draw() {
   background (53, 104, 189);
-  //spear.display();
-  //spear.move();
-  //fish.showFishy();
-  //fish.fishMove();
-  for (int i = 0; i < bubbles.length; i++){
-  bubbles[i].update();
-  bubbles[i].edges();
-  bubbles[i].show();  
+  fill(#85B9B6, 90);
+  rect(0, 700, 1200, 50);
+  fill(#85B9B6, 90);
+  rect(1000, 680, 200, 20);
+  fill(#85B9B6, 90);
+  rect(1100, 660, 200, 20);
+
+  for (int i = 0; i < bubbles.length; i++) {
+    bubbles[i].update();
+    bubbles[i].edges();
+    bubbles[i].show();
+    image(profish, 20, 520+sin(frameCount*0.19));
+  }
+  switch(menu) {
+  case 0://main menu
+    {
+      bigSpear.update();
+      fill(250);
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      text("Dodge the spear!", width/2, 300);
+      fill(250);
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      text("Press space to talk~!", width/3, 350);
+      startb.update();
+      startb.render();
+      if(startb.isClicked()){
+      menu = 1;
+      }
+    }
+    break;
+  case 1: // game play
+    {
+      bigSpear.update();
+      startTimer.countDown();
+      image(speechB, 230, 360+sin(frameCount*0.3));
+      yourFish.move();
+      fill(255);
+        textSize(42);
+        textAlign(CENTER, CENTER);
+        text(textPhrases[currentPhrase], width / 2+20, 600);
+        if (keyPressed && key == ' ') {
+          swapTextPhrase();
+        }
+      fill(30, 150, 0);
+      text(startTimer.getTime(), 1100, 60);
+      if (startTimer.getTime() <= 0) {
+          menu = 2; // Set menu to "end game"
+        }
+    }
+    break;
+  case 2: // end game
+    {
+      gameOver();
+      fill(100, 30, 200);
+      rect(0, 0, 1200, 700);
+      resetbutton.update();
+      resetbutton.render();
+      textAlign(CENTER, CENTER);
+      textSize(32);
+      text("You are dinner...!!", width / 2, height / 2);
+      if (resetbutton.isClicked()) {
+        startTimer.setTime(100);
+        menu = 0;
+      }
+    }
+    break;
+  case 3: //win
+  {
+  image(goodMood, 0, 0);
+  image(jolly, 900, 400);
+  menu = 0;
+  }
+  break;
   }
 }
 
-void gameOver() {
-  background(255, 0, 0);
+
+  void gameOver() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(32);
@@ -43,51 +151,6 @@ void gameOver() {
   gameover = true;
 }
 
-//void resetGame() {
-//  gameover = false;
-//  fishX = width / 2;
-//  fishY = height - 50;
-//  loop();  // Resume the game loop
-//}
-
-
-
-
-
-
-/**
- Pseudocode:
- (List of variables global variables)
- Main code setup{
- Background of ocean
- noStroke
- size of 400x800
- }
- Main code draw{
- Foreground shapes that move as the player presses keys, making sure there’s collision detection with the fish
- Button to start timer in corner
- Call the food particles
- Call the human’s spear
- Call the object fish
- Score of up to 100
- }
- Human spear class{
- Shapes make up spear and spear head
- Targets fish object with dist(), but make it always extend a on a timer (in order to give the player time to move)
- Spear starts at the top of the screen, and moves into the screen at random timed intervals, then returns back up
- If collision detected with fish EATEN (game over) screen pops up and end the game
- }
- Fish class{
- Shapes that make up the fish, moving with WASD, and can’t go out of bounds, and shape variables that increase when colliding with food array
- If ‘C’ key is pressed the fish’s speed is increased, when released it resets to initial value
- }
- Food{
- Array of particles randomly displayed and slowly falling down across the screen
- If fish collides with them, the particle disappears and the score counter goes up
- }
- 
- If the EATEN (game over) screen appears, show an image of a fish being grilled over a fire
- On the image, have a retry button that restarts the game
- If the YOU ATE (game won) screen appears, show image of fish sleeping in its cave/human being mad
- On image, have a play again button that restarts the game
-**/
+void swapTextPhrase() {
+  currentPhrase = (currentPhrase + 1) % textPhrases.length;
+}
