@@ -27,6 +27,9 @@ PVector fishPosition = new PVector();
 float fishSpeed = 6;
 PImage profish;
 PImage speechB;
+PImage jolly;
+PImage goodMood;
+PImage fishAte;
 Timer startTimer;
 Button resetbutton;
 Startbutton startb;
@@ -51,6 +54,9 @@ void setup() {
   //noCursor();
   profish = loadImage("Sprite-0001.png.png");
   speechB = loadImage("speech bobble game sprites.png");
+  fishAte = loadImage("fish ate.png");
+  goodMood = loadImage("good mood fish.jpg");
+  jolly = loadImage("jolly fish.png");
   for (int i = 0; i < bubbles.length; i++) {
     bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
   }
@@ -65,14 +71,6 @@ void draw() {
   fill(#85B9B6, 90);
   rect(1100, 660, 200, 20);
 
-
-  //if(Time==0){
-
-  //}
-
-
-  //fish.showFishy();
-  //fish.fishMove();
   for (int i = 0; i < bubbles.length; i++) {
     bubbles[i].update();
     bubbles[i].edges();
@@ -90,7 +88,7 @@ void draw() {
       fill(250);
       textSize(30);
       textAlign(CENTER, CENTER);
-      text("Swim!", width/2, 350);
+      text("Press space to talk~!", width/3, 350);
       startb.update();
       startb.render();
       if(startb.isClicked()){
@@ -100,6 +98,7 @@ void draw() {
     break;
   case 1: // game play
     {
+      bigSpear.update();
       startTimer.countDown();
       image(speechB, 230, 360+sin(frameCount*0.3));
       yourFish.move();
@@ -135,7 +134,8 @@ void draw() {
     break;
   case 3: //win
   {
-  
+  image(goodMood, 0, 0);
+  image(jolly, 900, 400);
   menu = 0;
   }
   break;
@@ -143,8 +143,7 @@ void draw() {
 }
 
 
-void gameOver() {
-  background(255, 0, 0);
+  void gameOver() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(32);

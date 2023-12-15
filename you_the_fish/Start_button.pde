@@ -17,9 +17,9 @@ class Startbutton {
     bText = t;
   }
   void update() { //must be placed in draw 
-    if (mousePressed && mouseButton == LEFT) { //&& bPressed = false
+    if (mousePressed && mouseButton == LEFT || (keyPressed && key == ENTER)) { //&& bPressed = false
       bPressed = true;
-      if (mouseX >= Pos.x && mouseX <= Pos.x + bWidth && mouseY >= Pos.y && mouseY <= Pos.y + bHeight) {
+      if (mouseX >= Pos.x && mouseX <= Pos.x + bWidth && mouseY >= Pos.y && mouseY <= Pos.y + bHeight|| (keyPressed && key == ENTER)) {
         bClicked = true;
       }
     } else
