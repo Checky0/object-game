@@ -15,21 +15,21 @@ class Fishy {
     fishyRotatedown = loadImage("assets/fisho/feeeshy full rotate4.png");
 }
   void move() {
-    image(fishyRotate, fishX, fishY);
+    image(fishyRotate, fishX+sin(frameCount*0.19), fishY);
     // Move the fish
     if (keyPressed) {
       if (key == 'a' || key == 'A') {
         fishX -= fishSpeed;
       } else if (key == 'd' || key == 'D') {
         fishX += fishSpeed;
-        image(fishyRotate, fishX, fishY);
-        image(fishyRotateright, fishX, fishY);
+        image(fishyRotate, fishX+sin(frameCount*0.19), fishY);
+        image(fishyRotateright, fishX+sin(frameCount*0.19), fishY);
       } else if (key == 'w' || key == 'W') {
         fishY -= fishSpeed;
-        image(fishyRotateup, fishX, fishY);
+        image(fishyRotateup, fishX+sin(frameCount*0.19), fishY);
       } else if (key == 's' || key == 'S') {
         fishY += fishSpeed;
-        image(fishyRotatedown, fishX, fishY);
+        image(fishyRotatedown, fishX+sin(frameCount*0.19), fishY);
       }
     }
 

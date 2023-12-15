@@ -11,11 +11,13 @@
 
 String gameMode;
 int menu = 0; // 0 main menu, 1 game play, 2 end game
+String[] textPhrases = {"Hey!", "You, yeah you.", "Hello there!", "How's it going?", "Are you fr?"};
+int currentPhrase = 0;
 
 //Button StartButton;
 
 PVector spearPosition;
-Bubble[] bubbles = new Bubble [7];
+Bubble[] bubbles = new Bubble [21];
 boolean gameover = false;
 boolean fishLeft;
 boolean fishRight;
@@ -41,7 +43,7 @@ void setup() {
   yourFish = new Fishy();
   startTimer = new Timer(20);
   resetbutton = new Button(1050, 100, 100, 50, "Reset", 20, 100, 255);
-  startb = new Startbutton(width/2, height/2-height/4, 100, 50, "Start", 90, 100, 255);
+  startb = new Startbutton(width/2-50, height/2-50, 100, 50, "Swim!", 90, 100, 255);
   
   gameMode = "START";
   //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
@@ -49,7 +51,6 @@ void setup() {
   //noCursor();
   profish = loadImage("Sprite-0001.png.png");
   speechB = loadImage("speech bobble game sprites.png");
-
   for (int i = 0; i < bubbles.length; i++) {
     bubbles[i] = new Bubble(random(50)+ i * 60, random(40) + 4);
   }
@@ -77,7 +78,6 @@ void draw() {
     bubbles[i].edges();
     bubbles[i].show();
     image(profish, 20, 520+sin(frameCount*0.19));
-    image(speechB, 230, 360+sin(frameCount*0.3));
   }
   switch(menu) {
   case 0://main menu
@@ -100,13 +100,21 @@ void draw() {
     break;
   case 1: // game play
     {
-      yourFish.move();
       startTimer.countDown();
+      image(speechB, 230, 360+sin(frameCount*0.3));
+      yourFish.move();
+      fill(255);
+        textSize(42);
+        textAlign(CENTER, CENTER);
+        text(textPhrases[currentPhrase], width / 2+20, 600);
+        if (keyPressed && key == ' ') {
+          swapTextPhrase();
+        }
       fill(30, 150, 0);
       text(startTimer.getTime(), 1100, 60);
-      //if(fishCollide()){
-      //menu = 2;
-      //}
+      if (startTimer.getTime() <= 0) {
+          menu = 2; // Set menu to "end game"
+        }
     }
     break;
   case 2: // end game
@@ -116,12 +124,21 @@ void draw() {
       rect(0, 0, 1200, 700);
       resetbutton.update();
       resetbutton.render();
+      textAlign(CENTER, CENTER);
+      textSize(32);
+      text("You are dinner...!!", width / 2, height / 2);
       if (resetbutton.isClicked()) {
         startTimer.setTime(100);
         menu = 0;
       }
     }
     break;
+  case 3: //win
+  {
+  
+  menu = 0;
+  }
+  break;
   }
 }
 
@@ -133,4 +150,8 @@ void gameOver() {
   textSize(32);
   text("Game Over", width / 2, height / 2);
   gameover = true;
+}
+
+void swapTextPhrase() {
+  currentPhrase = (currentPhrase + 1) % textPhrases.length;
 }
