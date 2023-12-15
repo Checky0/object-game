@@ -27,7 +27,10 @@ PImage profish;
 PImage speechB;
 Timer startTimer;
 Button resetbutton;
+Startbutton startb;
+int playerSize = 100;
 Spear bigSpear;
+Fishy yourFish;
 
 
 //Fishy fish = new Fishy;
@@ -35,8 +38,10 @@ Spear bigSpear;
 void setup() {
   size(1200, 750);
   bigSpear = new Spear();
+  yourFish = new Fishy();
   startTimer = new Timer(20);
   resetbutton = new Button(1050, 100, 100, 50, "Reset", 20, 100, 255);
+  startb = new Startbutton(width/2, height/2-height/4, 100, 50, "Start", 90, 100, 255);
   
   gameMode = "START";
   //StartButton = new Button(500, 100, 200, 50, "Start", 0, 200, 200);
@@ -58,9 +63,7 @@ void draw() {
   rect(1000, 680, 200, 20);
   fill(#85B9B6, 90);
   rect(1100, 660, 200, 20);
-  startTimer.countDown();
-  fill(30, 150, 0);
-  text(startTimer.getTime(), 1100, 60);
+
 
   //if(Time==0){
 
@@ -84,24 +87,39 @@ void draw() {
       textSize(30);
       textAlign(CENTER, CENTER);
       text("Dodge the spear!", width/2, 300);
-      //StartButton.update();
-      //StartButton.render();
-      //Fishy.showFishy();
+      fill(250);
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      text("Swim!", width/2, 350);
+      startb.update();
+      startb.render();
+      if(startb.isClicked()){
+      menu = 1;
+      }
     }
     break;
   case 1: // game play
     {
+      yourFish.move();
+      startTimer.countDown();
+      fill(30, 150, 0);
+      text(startTimer.getTime(), 1100, 60);
+      //if(fishCollide()){
+      //menu = 2;
+      //}
     }
     break;
   case 2: // end game
     {
+      gameOver();
       fill(100, 30, 200);
       rect(0, 0, 1200, 700);
       resetbutton.update();
       resetbutton.render();
       if (resetbutton.isClicked()) {
-      startTimer.setTime(100);
-  }
+        startTimer.setTime(100);
+        menu = 0;
+      }
     }
     break;
   }

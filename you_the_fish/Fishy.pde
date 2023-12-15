@@ -1,90 +1,30 @@
 class Fishy {
 
-  Fishy() {
-
-    showFishy();
-    //fishMove();
-
-
-
-    //PVector fishPosition = new PVector();
-  }
-  void showFishy() {
-    PVector fishPosition = new PVector();
-    fill(251, 218, 233);
-    rect(fishPosition.x+38, fishPosition.y+sin(frameCount*0.01), 107, 41);
-    fill(251, 218, 233);
-    rect(fishPosition.x+22, fishPosition.y, 15, 10);
-  }
-
-  void keyPressed() {
-    boolean fishLeft;
-    boolean fishRight;
-    boolean fishUp;
-    boolean fishDown;
-
-    if (key == 'W' || key == 'w') {
-      fishUp = true;
-    }
-    if (key == 'S' || key == 's') {
-      fishDown = true;
-    }
-    if (key == 'A' || key == 'a') {
-      fishLeft = true;
-    }
-    if (key == 'D' || key == 'd') {
-      fishRight = true;
-    }
-  }
-
-  void keyReleased() {
-    boolean fishLeft;
-    boolean fishRight;
-    boolean fishUp;
-    boolean fishDown;
-
-    if (key == 'W' || key == 'w') {
-      fishUp = false;
-    }
-    if (key == 'S' || key == 's') {
-      fishDown = false;
-    }
-    if (key == 'A' || key == 'a') {
-      fishLeft = false;
-    }
-    if (key == 'D' || key == 'd') {
-      fishRight = false;
-    }
-  }
-
-  void fishMove() {
-    boolean fishLeft = false;
-    boolean fishRight = false;
-    boolean fishUp = false;
-    boolean fishDown = false;
-    PVector fishPosition = new PVector();
-    float fishSpeed = 5;
-
-
-    if (fishUp) {
-      if (fishPosition.y - fishSpeed >= 0) {
-        fishPosition.y -= fishSpeed;
+  float fishX, fishY;   // Fish position
+  float fishSpeed = 5;  // Fish movement speed
+  PImage fishyRotate;
+  
+  Fishy(){
+  // Draw the fish
+    fishyRotate = loadImage("assets/fisho/feeeshy full rotate1.png");
+}
+  void move() {
+    image(fishyRotate, fishX, fishY);
+    // Move the fish
+    if (keyPressed) {
+      if (key == 'a' || key == 'A') {
+        fishX -= fishSpeed;
+      } else if (key == 'd' || key == 'D') {
+        fishX += fishSpeed;
+      } else if (key == 'w' || key == 'W') {
+        fishY -= fishSpeed;
+      } else if (key == 's' || key == 'S') {
+        fishY += fishSpeed;
       }
     }
-    if (fishDown) {
-      if (fishPosition.y + 50 + fishSpeed <= height) {
-        fishPosition.y += fishSpeed;
-      }
-    }
-    if (fishLeft) {
-      if (fishPosition.x - fishSpeed >= 0) {
-        fishPosition.x -= fishSpeed;
-      }
-    }
-    if (fishRight) {
-      if (fishPosition.x + 50 + fishSpeed <= width) {
-        fishPosition.x += fishSpeed;
-      }
-    }
+
+    // Keep the fish in frame
+    fishX = constrain(fishX, 0, width - 30);
+    fishY = constrain(fishY, 0, height - 30);
   }
 }
